@@ -54,6 +54,17 @@ Ce choix de règles est pertinent pour illustrer les ambiguïtés, car certaines
 
 L'ambiguïté apparaît lorsqu'une même séquence d'entrée peut satisfaire plusieurs règles.
 
+### 4.0 Cas ajouté : `aa` et `a+`
+
+Les deux règles que vous avez ajoutées en tête du fichier Flex constituent un exemple simple et très lisible d'ambiguïté lexicale :
+
+- `"aa"` reconnaît uniquement la chaîne exacte `aa` ;
+- `a+` reconnaît une suite d'au moins un `a`.
+
+Pour l'entrée `a`, seule la règle `a+` s'applique. Pour l'entrée `aaa`, la règle `a+` est aussi retenue, car elle reconnaît une séquence plus longue que `"aa"`. En revanche, pour l'entrée `aa`, les deux règles reconnaissent exactement les mêmes caractères. Flex applique alors sa seconde règle de décision : à longueur égale, la première règle écrite est prioritaire. C'est donc `"aa"` qui est choisie avant `a+`.
+
+Ce couple de règles illustre donc à la fois la priorité à la plus longue correspondance et, en cas d'égalité, l'importance de l'ordre des règles dans le fichier.
+
 ### 4.1 Ambiguïté entre mot-clé et identificateur
 
 L'entrée `if` peut être reconnue par :

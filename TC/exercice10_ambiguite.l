@@ -8,6 +8,8 @@ DIGIT   [0-9]
 ID      [a-zA-Z_][a-zA-Z0-9_]*
 
 %%
+"aa"                            { printf("Règle 1 (fixe) : [%s]\n", yytext); }
+a+                              { printf("Règle 2 (regex) : [%s]\n", yytext); } 
 "if"                            { printf("structure conditionnelle if      -> %s\n", yytext); }
 "while"                         { printf("boucle while   -> %s\n", yytext); }
 "<="                            { printf("inferieur ou egale  -> %s\n", yytext); }
