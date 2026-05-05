@@ -37,10 +37,15 @@ public class TestRunner {
         assertResult(2, 2, 2, 6, Entitlement.FULL, "collapsed rule 11");
     }
 
-    private static void assertResult(int t1, int t2, int t3, int total,
-                                     Entitlement entitlement, String name) {
-        ExamResult actual = ExamEvaluator.evaluate(t1, t2, t3);
-        assertEquals(total, actual.getTotal(), name + " total");
-        assertEquals(entitlement, actual.getEntitlement(), name + " entitlement");
-    }
+private static void assertResult(int t1, int t2, int t3, int total,
+                                 Entitlement entitlement, String name) {
+    ExamResult actual = ExamEvaluator.evaluate(t1, t2, t3);
+
+    System.out.println("──────────────────────────────────────────────────────────");
+    System.out.println("  Test  : " + name);
+    System.out.println("  Input : t1=" + t1 + "  t2=" + t2 + "  t3=" + t3);
+
+    assertEquals(total,       actual.getTotal(),       name + " [total]");
+    assertEquals(entitlement, actual.getEntitlement(), name + " [entitlement]");
+}
 }
